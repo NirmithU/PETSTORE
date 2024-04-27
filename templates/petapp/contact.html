@@ -1,0 +1,82 @@
+{% extends "petapp/base.html" %}
+{% block title %}
+Contact
+{% endblock title %}
+{% block content %}
+<h3>Welcome to <strong>PetStore</strong></h3>
+<h1>We have Healthy Breeds for sale </h1>
+<h2>We are selling accessories for pet </h2>
+<a href="/" class="btn-get-started scrollto">View</a>
+{% endblock content %}
+
+{% block body %}
+<nav class="navbar bg-body-tertiary ">
+  <div class="container-fluid ">
+    {% comment %} <span class="navbar-brand mb-0 h1 text-center">Contact Us</span> {% endcomment %}
+    <h1 class="text-center">Contact Us</h1>
+  </div>
+</nav>
+<div class="container mt-2">
+  {% for message in messages %}
+    <!--=========  Alert message from bootstrap  ========== -->
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+    </div>
+  {% endfor %}
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <form action="/contact/" method="POST">
+        {% csrf_token %}
+        <label for="name" class="p-2">Full Name</label>
+        <div class="form-group">
+        <input
+            type="text"
+            class="form-control p-2"
+            name="name"
+            id="name"
+            required
+        />
+        </div>
+        <label for="email" class="p-2">Email</label>
+        <div class="form-group">
+        <input
+            type="email"
+            class="form-control p-2"
+            name="email"
+            id="email"
+            required
+        />
+        </div>
+        <label for="desc" class="p-2">How Can I Help you?</label>
+        <div class="form-group">
+        <textarea
+            type="text"
+            class="form-control p-2"
+            name="desc"
+            id="desc"
+            required>
+        </textarea>
+        </div>
+        <label for="pnumber" class="p-2">Phone</label>
+        <div class="form-group">
+        <input
+            type="number"
+            class="form-control p-2"
+            name="pnumber"
+            id="pnumber"
+            required
+        />
+        </div>
+        <div class="d-grid gap-2 col-6 mx-auto m-4">
+          <button class="btn btn-dark p-3" type="submit">submit</button>
+        </div>
+        <br />
+    </form>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+</div>
+
+{% endblock body %}
